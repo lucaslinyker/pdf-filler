@@ -1,0 +1,106 @@
+import type { NotificationForm } from './notification.types'
+
+/** Estado inicial (vazio). Função para devolver sempre um objeto novo. */
+export const createEmptyForm = (): NotificationForm => ({
+  identification: {
+    notificationNumber: '',
+    notificationState: '',
+    notificationCity: '',
+    cbo: '',
+    cpf: '',
+    cns: '',
+    fullName: '',
+    motherName: '',
+    birthDate: '',
+    countryOfOrigin: '',
+    ethnicity: '',
+    passport: '',
+    zipCode: '',
+    residenceState: '',
+    residenceCity: '',
+    street: '',
+    number: '',
+    neighborhood: '',
+    complement: '',
+    mobilePhone: '',
+    contactPhone: '',
+  },
+  clinical: {
+    notificationDate: '',
+    symptomStartDate: '',
+    symptoms: [],
+    otherSymptoms: '',
+    conditions: [],
+    testTypes: [],
+    pcrRapidTestDate: '',
+    serologicalTestDate: '',
+    serologyTypes: [],
+    serologyResults: {},
+  },
+  closure: {
+    closureDate: '',
+    observations: '',
+  },
+})
+
+/**
+ * Dados FICTÍCIOS para testes e para calibrar o mapeamento em modo de
+ * desenvolvimento. Não correspondem a nenhuma pessoa real.
+ */
+export const createSampleForm = (): NotificationForm => ({
+  identification: {
+    notificationNumber: '000123',
+    notificationState: 'SP',
+    notificationCity: 'Cidade Exemplo',
+    hasCpf: true,
+    cpf: '123.456.789-09',
+    isForeign: false,
+    isHealthProfessional: true,
+    isSecurityProfessional: false,
+    cbo: '223505 - Enfermeiro',
+    cns: '123456789012345',
+    fullName: 'JOÃO AUGUSTO DA CONCEIÇÃO PEREIRA',
+    motherName: 'MARIA APARECIDA DA CONCEIÇÃO',
+    birthDate: '1985-03-27',
+    countryOfOrigin: 'Brasil',
+    sex: 'male',
+    race: 'indigenous',
+    ethnicity: 'Guarani',
+    passport: '',
+    zipCode: '15800-000',
+    residenceState: 'SP',
+    residenceCity: 'Município de Teste',
+    street: 'Rua das Acácias, ônibus e açaí',
+    number: '1234',
+    neighborhood: 'Jardim Ação',
+    complement: 'Apto 12 – Bloco B',
+    mobilePhone: '(17) 99999-0000',
+    contactPhone: '(17) 3333-0000',
+  },
+  clinical: {
+    notificationDate: '2026-11-01',
+    symptomStartDate: '2026-10-28',
+    symptoms: ['fever', 'cough', 'headache', 'smell_disorders', 'others'],
+    otherSymptoms: 'Mialgia e cansaço',
+    conditions: ['diabetes', 'chronic_cardiac'],
+    testStatus: 'concluded',
+    testTypes: ['rt_pcr', 'serological'],
+    pcrRapidTestDate: '2026-10-30',
+    serologicalTestDate: '2026-11-01',
+    pcrRapidResult: 'positive',
+    serologyTypes: ['iga', 'igg', 'igm', 'total_antibodies'],
+    serologyResults: {
+      iga: 'reactive',
+      igg: 'non_reactive',
+      igm: 'inconclusive',
+      total_antibodies: 'reactive',
+    },
+  },
+  closure: {
+    evolution: 'home_treatment',
+    finalClassification: 'laboratory',
+    closureDate: '2026-11-10',
+    observations:
+      'Paciente em isolamento domiciliar, acompanhado pela equipe da unidade básica. Contatos domiciliares orientados. Caso de teste: dados fictícios, ação e coração.',
+  },
+})
