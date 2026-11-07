@@ -23,7 +23,7 @@ export function Stepper({ steps, current, onSelect }: StepperProps) {
                 type="button"
                 onClick={() => onSelect(i)}
                 aria-current={active ? 'step' : undefined}
-                className={`flex w-full flex-col items-start gap-1 rounded-lg border px-3 py-2 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 ${
+                className={`flex w-full flex-col items-start gap-1 h-full justify-between rounded-lg border px-3 py-2 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 ${
                   active
                     ? 'border-teal-700 bg-teal-50'
                     : done
