@@ -125,6 +125,6 @@ export const notificationSchema = z.object({
     closureDate: isoDate,
     observations: text(400),
   }),
-}) satisfies z.ZodType<NotificationForm, z.ZodTypeDef, unknown>
+}) satisfies z.ZodType<NotificationForm>
 
 export type NotificationFormInput = z.input<typeof notificationSchema>

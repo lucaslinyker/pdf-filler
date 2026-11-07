@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { loadTemplateBytes } from '../services/pdf/pdf-generator'
+import { loadTemplateBytes } from '../services/pdf/pdf-template'
 
 /** Carrega o PDF original (modelo em branco) para a pré-visualização inicial. */
 export function useTemplateBytes(): Uint8Array | null {

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { loadPdf, type LoadedPdf } from '../../services/pdf/pdf-renderer'
+import type { LoadedPdf } from '../../services/pdf/pdf-renderer'
 import { Button } from '../ui/Button'
 
 interface PdfPreviewProps {
@@ -33,13 +33,20 @@ export function PdfPreview({ bytes, caption }: PdfPreviewProps) {
     let cancelled = false
     let loaded: LoadedPdf | null = null
     setError(null)
-    loadPdf(bytes)
-      .then((p) => {
-        if (cancelled) return p.destroy()
-        loaded = p
-        setPdf(p)
-      })
-      .catch(() => !cancelled && setError('Não foi possível exibir o PDF.'))
+    void import('../../services/pdf/pdf-renderer')
+    .then(({ loadPdf }) => loadPdf(bytes))
+    .then((p) => {
+      if (cancelled) {
+        p.destroy()
+        return
+      }
+
+      loaded = p
+      setPdf(p)
+    })
+    .catch(() => {
+      if (!cancelled) setError('Não foi possível exibir o PDF.')
+    })
     return () => {
       cancelled = true
       loaded?.destroy()

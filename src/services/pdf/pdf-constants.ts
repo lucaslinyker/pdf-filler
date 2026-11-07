@@ -1,0 +1,1 @@
+export const DEFAULT_FILE_NAME = 'notificacao-covid-2020.pdf'

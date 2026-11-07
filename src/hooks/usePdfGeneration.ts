@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import type { NotificationForm } from '../features/notification/notification.types'
-import { generateNotificationPdf, type GenerationResult } from '../services/pdf/pdf-generator'
+import type { GenerationResult } from '../services/pdf/pdf-generator'
 
 /** Estado da geração do PDF. Os bytes ficam apenas em memória. */
 export function usePdfGeneration() {
@@ -12,6 +12,7 @@ export function usePdfGeneration() {
     setGenerating(true)
     setError(null)
     try {
+      const { generateNotificationPdf } = await import('../services/pdf/pdf-generator')
       setResult(await generateNotificationPdf(form, { debug }))
       return true
     } catch (e) {

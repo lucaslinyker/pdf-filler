@@ -15,7 +15,7 @@ import { notificationSchema, type NotificationFormInput } from './features/notif
 import type { NotificationForm } from './features/notification/notification.types'
 import { usePdfGeneration } from './hooks/usePdfGeneration'
 import { useTemplateBytes } from './hooks/useTemplateBytes'
-import { DEFAULT_FILE_NAME } from './services/pdf/pdf-generator'
+import { DEFAULT_FILE_NAME } from './services/pdf/pdf-constants'
 import { downloadPdf, printPdf } from './utils/download'
 
 const STEPS: StepDef[] = [

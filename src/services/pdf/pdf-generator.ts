@@ -13,8 +13,8 @@ import {
 } from './text-layout'
 import { coordinates as covid2020 } from './templates/covid-2020/coordinates'
 import type { TemplateCoordinates } from './types'
+import { loadTemplateBytes } from './pdf-template'
 
-export const TEMPLATE_PATH = 'templates/covid-2020/template.pdf'
 export const DEFAULT_FILE_NAME = 'notificacao-covid-2020.pdf'
 
 const INK = rgb(0.05, 0.05, 0.35) // azul-escuro: distingue o preenchimento do impresso
@@ -37,13 +37,6 @@ export interface GenerateOptions {
   fontProvider?: FontProvider
   /** Desenha grade e marcadores de calibração (usar apenas em desenvolvimento). */
   debug?: boolean
-}
-
-export const loadTemplateBytes = async (): Promise<ArrayBuffer> => {
-  const url = `${import.meta.env?.BASE_URL ?? '/'}${TEMPLATE_PATH}`
-  const res = await fetch(url)
-  if (!res.ok) throw new Error(`Não foi possível carregar o modelo do PDF (${res.status})`)
-  return res.arrayBuffer()
 }
 
 const mediaBoxOf = (page: PDFPage): MediaBox => {

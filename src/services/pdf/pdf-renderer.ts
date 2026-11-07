@@ -1,8 +1,8 @@
-import * as pdfjs from 'pdfjs-dist'
+import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist'
 // O worker é empacotado pelo Vite como asset e carregado por URL (sem CDN).
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 
-pdfjs.GlobalWorkerOptions.workerSrc = workerUrl
+GlobalWorkerOptions.workerSrc = workerUrl
 
 export interface LoadedPdf {
   /** Largura/altura da página 1 em pontos (escala 1). */
@@ -19,7 +19,7 @@ export interface LoadedPdf {
  */
 export const loadPdf = async (bytes: Uint8Array): Promise<LoadedPdf> => {
   // pdf.js transfere o buffer ao worker; passamos uma cópia para preservar o original.
-  const task = pdfjs.getDocument({ data: bytes.slice() })
+  const task = getDocument({ data: bytes.slice() })
   const doc = await task.promise
   const page = await doc.getPage(1)
   const base = page.getViewport({ scale: 1 })
