@@ -9,4 +9,8 @@ export default defineConfig({
     environment: 'node',
     include: ['src/**/*.test.ts'],
   },
+  server: {
+    host: true,
+    allowedHosts: ["mac.local"],
+  },
 })
